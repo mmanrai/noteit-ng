@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="row">
+    <div class="offset-3"></div>
+    <div class="col-md-6">
+      <form name="form" #f="ngForm" novalidate class="feedback-form" (submit)="sendFeedback()" >
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text"
+                 class="form-control" i
+                 id="name"
+                 placeholder="Enter Name"
+                 name="name"
+                 [(ngModel)]="model.name">
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email"
+                 class="form-control"
+                 id="email"
+                 aria-describedby="emailHelp"
+                 placeholder="Enter Email"
+                 name="email"
+                 [(ngModel)]="model.email">
+          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        </div>
+        <div class="form-group">
+          <label for="comments">Comments</label>
+          <textarea class="form-control"
+                    id="comments"
+                    placeholder="Your Feedback Comments"
+                    name="comments"
+                    rows="10"
+                    [(ngModel)]="model.comments"></textarea>
+        </div>
+        <button type="submit" class="btn btn-info pull-right">
+          <i class="fa fa-envelope-o"></i>
+          <span> Send Feedback</span>
+        </button>
+      </form>
+    </div>
+    <div class="offset-3"></div>
+  </div>
+</div>
