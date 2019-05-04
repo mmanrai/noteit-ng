@@ -1,6 +1,13 @@
 # NoteitNg
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.8.
+1. Install node using node version manager
+   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
+2. nvm install node
+3. nvm use node
+4. npm install -g @angular/cli
+5. ng create note-it
+6. npm install bootstrap font-awesome --save (This will download and reference bootstrap in current project)
+
 
 ## Development server
 
