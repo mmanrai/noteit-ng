@@ -2,7 +2,7 @@
   <div class="row">
     <div class="offset-3"></div>
     <div class="col-md-6">
-      <form name="form" #f="ngForm" novalidate class="feedback-form" (ngSubmit)="sendFeedback()">
+      <form name="form" #f="ngForm" novalidate class="feedback-form" (ngSubmit)="f.form.valid && sendFeedback()">
         <div class="form-group">
           <label for="name">Name</label>
           <input type="text"
@@ -10,7 +10,13 @@
                  id="name"
                  placeholder="Enter Name"
                  name="name"
-                 [(ngModel)]="model.name">
+                 [(ngModel)]="model.name"
+                 #name="ngModel"
+                 [ngClass]="{'is-invalid':f.submitted && name.invalid}"
+                 required>
+          <div *ngIf="f.submitted && name.invalid" class="invalid-input">
+            <div *ngIf="name.errors?.required">Field is required</div>
+          </div>
         </div>
         <div class="form-group">
           <label for="email">Email</label>
@@ -20,7 +26,15 @@
                  aria-describedby="emailHelp"
                  placeholder="Enter Email"
                  name="email"
-                 [(ngModel)]="model.email">
+                 [(ngModel)]="model.email"
+                 #email="ngModel"
+                 [ngClass]="{'is-invalid':f.submitted && email.invalid}"
+                 required email
+          >
+          <div *ngIf="f.submitted && email.invalid" class="invalid-input">
+            <div *ngIf="email.errors?.required">Field is required</div>
+            <div *ngIf="email.errors?.email">Please enter valid email address</div>
+          </div>
           <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
         </div>
         <div class="form-group">
@@ -30,7 +44,15 @@
                     placeholder="Your Feedback Comments"
                     name="comments"
                     rows="10"
-                    [(ngModel)]="model.comments"></textarea>
+                    [(ngModel)]="model.comments"
+                    #comments="ngModel"
+                    [ngClass]="{'is-invalid':f.submitted && comments.invalid}"
+                    required minlength="10"
+          ></textarea>
+          <div *ngIf="f.submitted && comments.invalid" class="invalid-input">
+            <div *ngIf="comments.errors?.required">Field is required</div>
+            <div *ngIf="comments.errors?.minlength">Please enter at least 10 characters</div>
+          </div>
         </div>
         <button type="submit" class="btn btn-info pull-right">
           <i class="fa fa-envelope-o"></i>
